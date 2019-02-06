@@ -1,15 +1,17 @@
 const Telegraf = require('telegraf');
 
-const bot = new Telegraf('764272037:AAHFt8QCbA9TxrwM0HV3ot_7BtpA8YaLJnY');
-console.debug('Bot initiated.');
-//bot.start((ctx) => ctx.reply('This bot can not be used for personal interaction. Just add it to the chat and assign control to delete users.'));
-bot.startWebhook('/Vg1rTdfeW6EhrCux06E3ZecyhmOoFImANvFzfuyr', null, 5000);
-console.debug('Webhook started');
+const API_TOKEN = '764272037:AAHFt8QCbA9TxrwM0HV3ot_7BtpA8YaLJnY';
+const PORT = 3000;
+const URL = 'https://youdiedbot.herokuapp.com';
 
+const bot = new Telegraf(API_TOKEN);
+console.debug('Bot initiated.');
+bot.start((ctx) => ctx.reply('This bot can not be used for personal interaction. Just add it to the chat and assign control to delete users.'));
 bot.on('message', (ctx) => {
   console.log(ctx.message);
 });
 console.debug('Bot listening started');
 
-bot.launch();
-console.debug('Bot launched');
+bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
+bot.startWebhook(`/bot${API_TOKEN}`, null, PORT);
+console.debug('Webhook started');
