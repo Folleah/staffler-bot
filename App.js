@@ -26,9 +26,8 @@ bot.on('new_chat_members', (ctx) => {
 });
 
 bot.on('message', (ctx) => {
-  console.debug(isWhois(ctx.message.text), isUserJoinedRecently(ctx.message.from.id));
+  console.debug(typeof ctx.message.entities, ctx.message.entities === undefined, ctx.message.entities === null);
   if (!isWhois(ctx.message.text) && isUserJoinedRecently(ctx.message.from.id)) {
-    console.log(ctx.message.entities !== null);
     if (ctx.message.entities !== null || ctx.message.photo !== null) {
 
       // telegram.kickChatMember(ctx.message.chat.id, ctx.message.from.id);
