@@ -1,8 +1,11 @@
 const Telegraf = require('telegraf');
 
-const bot = new Telegraf('581665381:AAEUAFKyV-Es3H-n2kkxxaaGMN1W7CB7fz4');
-bot.start((ctx) => ctx.reply('Welcome'));
-bot.help((ctx) => ctx.reply('Send me a sticker'));
-bot.on('sticker', (ctx) => ctx.reply('👍'));
-bot.hears('hi', (ctx) => ctx.reply('Hey there'));
+const bot = new Telegraf('764272037:AAHFt8QCbA9TxrwM0HV3ot_7BtpA8YaLJnY');
+bot.start((ctx) => ctx.reply('This bot can not be used for personal interaction. Just add it to the chat and assign control to delete users.'));
+bot.startWebhook('/Vg1rTdfeW6EhrCux06E3ZecyhmOoFImANvFzfuyr', null, 5000);
+
+bot.on('message', (ctx) => {
+  ctx.reply('test');
+});
+
 bot.launch();
