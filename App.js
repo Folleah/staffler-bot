@@ -24,6 +24,13 @@ bot.on('new_chat_members', (ctx) => {
   joinedUsers.push(userInfo);
 });
 
+bot.on('left_chat_member', (ctx) => {
+  joinedUsers = joinedUsers.filter(function(userInfo) {
+    return userInfo.userId !== ctx.message.from.id;
+  });
+  console.debug('User left: ' + ctx.message.from.id);
+});
+
 bot.on('message', (ctx) => {
   console.debug(ctx.message);
   if (ctx.message.text === undefined) {
