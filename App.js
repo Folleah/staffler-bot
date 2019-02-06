@@ -7,7 +7,7 @@ bot.startWebhook('/Vg1rTdfeW6EhrCux06E3ZecyhmOoFImANvFzfuyr', null, 5000);
 console.debug('Webhook started');
 
 bot.on('message', (ctx) => {
-  ctx.reply('test');
+  console.log(ctx.message);
 });
 console.debug('Bot listening started');
 
