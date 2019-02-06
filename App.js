@@ -27,7 +27,7 @@ bot.on('new_chat_members', (ctx) => {
 
 bot.on('message', (ctx) => {
   if (!isWhois(ctx.message.text) && isUserJoinedRecently(ctx.message.from.id)) {
-    console.log(ctx.message.entities);
+    console.log(ctx.message.entities !== null);
     if (ctx.message.entities !== null || ctx.message.photo !== null) {
 
       // telegram.kickChatMember(ctx.message.chat.id, ctx.message.from.id);
