@@ -26,13 +26,11 @@ bot.on('new_chat_members', (ctx) => {
 });
 
 bot.on('message', (ctx) => {
-  console.debug(typeof ctx.message.entities, ctx.message.entities === undefined, ctx.message.entities === null);
   if (!isWhois(ctx.message.text) && isUserJoinedRecently(ctx.message.from.id)) {
-    if (ctx.message.entities !== null || ctx.message.photo !== null) {
-
-      // telegram.kickChatMember(ctx.message.chat.id, ctx.message.from.id);
-      // telegram.deleteMessage(ctx.message.chat.id, ctx.message.message_id);
-      // ctx.reply(`__Bot #${ctx.message.from.id} died.__`);
+    if (ctx.message.entities !== undefined || ctx.message.photo !== undefined || ctx.message.video !== undefined) {
+      telegram.kickChatMember(ctx.message.chat.id, ctx.message.from.id);
+      telegram.deleteMessage(ctx.message.chat.id, ctx.message.message_id);
+      ctx.reply(`__Bot #${ctx.message.from.id} died.__`);
     }
   }
 });
