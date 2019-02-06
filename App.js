@@ -52,7 +52,7 @@ bot.on('message', (ctx) => {
 
     if (ctx.message.entities !== undefined || ctx.message.photo !== undefined || ctx.message.video !== undefined) {
       console.debug('user kicked: ' + ctx.message.from.id);
-      ctx.replyWithHTML(`<i>Bot #${ctx.message.from.id} died.</i>`);
+      //ctx.replyWithHTML(`<i>Bot #${ctx.message.from.id} died.</i>`);
       telegram.kickChatMember(ctx.message.chat.id, ctx.message.from.id);
       deleteUserMessages(ctx.message.chat.id, ctx.message.from.id);
       deleteUserFromStorage(ctx.message.chat.id, ctx.message.from.id);
