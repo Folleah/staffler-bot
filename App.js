@@ -29,8 +29,7 @@ bot.on('message', (ctx) => {
   if (ctx.message.text === undefined) {
     return;
   }
-  console.debug('DUMP');
-  console.debug(joinedUsers);
+  console.log(telegram.getChatAdministrators(ctx.message.chat.id));
 
   if (!isWhois(ctx.message.text) && isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id)) {
     if (ctx.message.entities !== undefined || ctx.message.photo !== undefined || ctx.message.video !== undefined) {
