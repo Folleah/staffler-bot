@@ -37,7 +37,7 @@ bot.on('message', (ctx) => {
       console.debug('user kicked: ' + ctx.message.chat.id);
       telegram.kickChatMember(ctx.message.chat.id, ctx.message.from.id);
       telegram.deleteMessage(ctx.message.chat.id, ctx.message.message_id);
-      ctx.reply(`_Bot #${ctx.message.from.id} died._`);
+      ctx.replyWithMarkdown(`_Bot #${ctx.message.from.id} died._`);
       deleteUserFromStorage(ctx.message.chat.id, ctx.message.from.id);
     }
   }
