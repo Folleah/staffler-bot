@@ -1,7 +1,7 @@
 const Telegraf = require('telegraf');
 
 const API_TOKEN = '764272037:AAHFt8QCbA9TxrwM0HV3ot_7BtpA8YaLJnY';
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const URL = 'https://youdiedbot.herokuapp.com';
 
 const bot = new Telegraf(API_TOKEN);
