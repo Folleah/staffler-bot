@@ -1,9 +1,9 @@
 const Telegraf = require('telegraf');
 const Telegram = require('telegraf/telegram');
 
-const API_TOKEN = '764272037:AAHFt8QCbA9TxrwM0HV3ot_7BtpA8YaLJnY';
+const API_TOKEN = process.env.API_TOKEN || 'your token';
 const PORT = process.env.PORT || 3000;
-const URL = 'https://youdiedbot.herokuapp.com';
+const URL = process.env.BOT_URL || 'https://yourappname.herokuapp.com';
 const EXPIRED_TIME = 60 * 10;
 let joinedUsers = [];
 
