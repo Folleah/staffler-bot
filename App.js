@@ -26,7 +26,7 @@ bot.on('left_chat_member', (ctx) => {
 
 bot.on('message', (ctx) => {
   telegram.getChatMember(ctx.message.chat.id, ctx.message.from.id).then(function(onFulfilled) {
-    if (isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id)) {
+    if (!isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id)) {
       return;
     }
 
