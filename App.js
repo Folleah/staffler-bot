@@ -119,7 +119,7 @@ addUserToStorage = (chatId, userId, timestamp) => {
 };
 
 deleteUserMessages = (chatId, userId) => {
-  chatHistory.forEach(function (message) {
+  chatHistory.forEach(function (message, index) {
     if (message.userId === userId) {
       telegram.deleteMessage(chatId, message.messageId);
     }
