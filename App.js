@@ -5,7 +5,9 @@ const API_TOKEN = process.env.API_TOKEN || 'your token';
 const PORT = process.env.PORT || 3000;
 const URL = process.env.BOT_URL || 'https://yourappname.herokuapp.com';
 const EXPIRED_TIME = 60 * 10;
+const CHAT_HISTORY_EXPIRED = 60;
 let joinedUsers = [];
+let chatHistory = [];
 
 console.debug('App port: ' + PORT);
 console.debug('url: ' + URL);
@@ -28,6 +30,12 @@ bot.on('left_chat_member', (ctx) => {
 });
 
 bot.on('message', (ctx) => {
+  chatHistory.push({
+    chatId: ctx.message.chat.id,
+    userId: ctx.message.from.id,
+    messageId: ctx.message.message_id,
+    timestamp: ctx.message.date
+  });
   telegram.getChatMember(ctx.message.chat.id, ctx.message.from.id).then(function(onFulfilled) {
     if (!isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id)) {
       return;
@@ -44,9 +52,9 @@ bot.on('message', (ctx) => {
 
     if (ctx.message.entities !== undefined || ctx.message.photo !== undefined || ctx.message.video !== undefined) {
       console.debug('user kicked: ' + ctx.message.from.id);
-      telegram.kickChatMember(ctx.message.chat.id, ctx.message.from.id);
-      telegram.deleteMessage(ctx.message.chat.id, ctx.message.message_id);
       ctx.replyWithHTML(`<i>Bot #${ctx.message.from.id} died.</i>`);
+      telegram.kickChatMember(ctx.message.chat.id, ctx.message.from.id);
+      deleteUserMessages(ctx.message.chat.id, ctx.message.from.id);
       deleteUserFromStorage(ctx.message.chat.id, ctx.message.from.id);
       console.debug(`Bot #${ctx.message.from.id} died.`);
     }
@@ -58,6 +66,10 @@ setInterval(() => {
   let currentTimestamp = getCurrentTimestamp();
   joinedUsers = joinedUsers.filter(function (userInfo) {
     return (currentTimestamp - EXPIRED_TIME) < userInfo.timestamp;
+  });
+
+  chatHistory = chatHistory.filter(function (message) {
+    return (currentTimestamp - CHAT_HISTORY_EXPIRED) < message.timestamp;
   });
 }, 5 * 1000);
 
@@ -103,5 +115,11 @@ addUserToStorage = (chatId, userId, timestamp) => {
     chatId: chatId,
     userId: userId,
     timestamp: timestamp,
+  });
+};
+
+deleteUserMessages = (chatId, userId) => {
+  chatHistory.forEach(function (message) {
+    telegram.deleteMessage(chatId, message.messageId);
   });
 };
