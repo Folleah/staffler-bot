@@ -29,6 +29,8 @@ bot.on('message', (ctx) => {
   if (ctx.message.text === undefined) {
     return;
   }
+  console.debug('DUMP');
+  console.debug(joinedUsers);
 
   console.debug(!isWhois(ctx.message.text), isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id));
   if (!isWhois(ctx.message.text) && isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id)) {
@@ -47,7 +49,12 @@ console.debug('Bot listening started');
 setInterval(() => {
   let currentTimestamp = getCurrentTimestamp();
   joinedUsers = joinedUsers.filter(function (userInfo) {
-    return (currentTimestamp - EXPIRED_TIME) < userInfo.timestamp;
+    let isUserExpired = (currentTimestamp - EXPIRED_TIME) < userInfo.timestamp;
+    if (isUserExpired) {
+      console.debug('INTERVAL');
+      console.log(userInfo);
+    }
+    return isUserExpired;
   });
 }, 5 * 1000);
 
