@@ -26,10 +26,18 @@ bot.on('left_chat_member', (ctx) => {
 
 bot.on('message', (ctx) => {
   telegram.getChatMember(ctx.message.chat.id, ctx.message.from.id).then(function(onFulfilled) {
-    console.log(onFulfilled);
-  });
+    if (isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id)) {
+      return;
+    }
 
-  if (!isWhois(ctx.message.text) && isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id)) {
+    if (onFulfilled.status === 'creator' || onFulfilled.status === 'administrator') {
+      return;
+    }
+
+    if (isWhois(ctx.message.text)) {
+      return;
+    }
+
     if (ctx.message.entities !== undefined || ctx.message.photo !== undefined || ctx.message.video !== undefined) {
       console.debug('user kicked: ' + ctx.message.from.id);
       telegram.kickChatMember(ctx.message.chat.id, ctx.message.from.id);
@@ -37,7 +45,7 @@ bot.on('message', (ctx) => {
       ctx.replyWithMarkdown(`_Bot #${ctx.message.from.id} died._`);
       deleteUserFromStorage(ctx.message.chat.id, ctx.message.from.id);
     }
-  }
+  });
 });
 console.debug('Bot listening started');
 
