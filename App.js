@@ -22,6 +22,7 @@ bot.on('new_chat_members', (ctx) => {
   };
   console.debug('User join: ' + userInfo);
   joinedUsers.push(userInfo);
+  console.log(joinedUsers);
 });
 
 bot.on('left_chat_member', (ctx) => {
