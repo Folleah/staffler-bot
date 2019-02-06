@@ -4,6 +4,8 @@ const API_TOKEN = '764272037:AAHFt8QCbA9TxrwM0HV3ot_7BtpA8YaLJnY';
 const PORT = process.env.PORT || 3000;
 const URL = 'https://youdiedbot.herokuapp.com';
 
+console.debug('App port: ' + PORT);
+
 const bot = new Telegraf(API_TOKEN);
 console.debug('Bot initiated.');
 bot.start((ctx) => ctx.reply('This bot can not be used for personal interaction. Just add it to the chat and assign control to delete users.'));
