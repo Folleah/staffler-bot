@@ -32,14 +32,12 @@ bot.on('message', (ctx) => {
   console.debug('DUMP');
   console.debug(joinedUsers);
 
-  console.debug(!isWhois(ctx.message.text), isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id));
   if (!isWhois(ctx.message.text) && isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id)) {
-    console.debug(ctx.message.entities !== undefined);
     if (ctx.message.entities !== undefined || ctx.message.photo !== undefined || ctx.message.video !== undefined) {
       console.debug('user kicked: ' + ctx.message.chat.id);
       telegram.kickChatMember(ctx.message.chat.id, ctx.message.from.id);
       telegram.deleteMessage(ctx.message.chat.id, ctx.message.message_id);
-      ctx.reply(`__Bot #${ctx.message.from.id} died.__`);
+      ctx.reply(`_Bot #${ctx.message.from.id} died._`);
       deleteUserFromStorage(ctx.message.chat.id, ctx.message.from.id);
     }
   }
@@ -83,6 +81,10 @@ deleteUserFromStorage = (chatId, userId) => {
 };
 
 addUserToStorage = (chatId, userId, timestamp) => {
+  if (isUserJoinedRecently(chatId, userId)) {
+    return;
+  }
+
   joinedUsers.push({
     chatId: chatId,
     userId: userId,
