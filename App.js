@@ -15,21 +15,13 @@ console.debug('Bot initiated.');
 bot.start((ctx) => ctx.reply('This bot can not be used for personal interaction. Just add it to the chat and assign control to delete users and messages.'));
 
 bot.on('new_chat_members', (ctx) => {
-  let userInfo = {
-    chatId: ctx.message.chat.id,
-    userId: ctx.message.from.id,
-    timestamp: ctx.message.date,
-  };
-  console.debug('User join: ' + userInfo);
-  joinedUsers.push(userInfo);
-  console.log(joinedUsers);
+  console.debug('User join: ' + ctx.message.from.id);
+  addUserToStorage(ctx.message.chat.id, ctx.message.from.id, ctx.message.date);
 });
 
 bot.on('left_chat_member', (ctx) => {
-  joinedUsers = joinedUsers.filter(function(userInfo) {
-    return userInfo.userId !== ctx.message.from.id;
-  });
   console.debug('User left: ' + ctx.message.from.id);
+  deleteUserFromStorage(ctx.message.chat.id, ctx.message.from.id);
 });
 
 bot.on('message', (ctx) => {
@@ -38,16 +30,15 @@ bot.on('message', (ctx) => {
     return;
   }
 
-  console.debug(joinedUsers);
-
   console.debug(!isWhois(ctx.message.text), isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id));
   if (!isWhois(ctx.message.text) && isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id)) {
     console.debug(ctx.message.entities !== undefined);
     if (ctx.message.entities !== undefined || ctx.message.photo !== undefined || ctx.message.video !== undefined) {
-      console.debug('user kicked');
+      console.debug('user kicked: ' + ctx.message.chat.id);
       telegram.kickChatMember(ctx.message.chat.id, ctx.message.from.id);
       telegram.deleteMessage(ctx.message.chat.id, ctx.message.message_id);
       ctx.reply(`__Bot #${ctx.message.from.id} died.__`);
+      deleteUserFromStorage(ctx.message.chat.id, ctx.message.from.id);
     }
   }
 });
@@ -56,9 +47,8 @@ console.debug('Bot listening started');
 setInterval(() => {
   let currentTimestamp = getCurrentTimestamp();
   joinedUsers = joinedUsers.filter(function (userInfo) {
-    console.debug(currentTimestamp, EXPIRED_TIME, userInfo.timestamp);
-    return (currentTimestamp - EXPIRED_TIME) > userInfo.timestamp;
-  })
+    return (currentTimestamp - EXPIRED_TIME) < userInfo.timestamp;
+  });
 }, 5 * 1000);
 
 bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
@@ -81,4 +71,18 @@ isUserJoinedRecently = (chatId, userId) => {
   });
 
   return false;
+};
+
+deleteUserFromStorage = (chatId, userId) => {
+  joinedUsers = joinedUsers.filter(function(userInfo) {
+    return userInfo.userId !== userId && userInfo.chatId !== chatId;
+  });
+};
+
+addUserToStorage = (chatId, userId, timestamp) => {
+  joinedUsers.push({
+    chatId: chatId,
+    userId: userId,
+    timestamp: timestamp,
+  });
 };
