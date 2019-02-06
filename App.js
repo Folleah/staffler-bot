@@ -3,6 +3,7 @@ const Telegraf = require('telegraf');
 const API_TOKEN = '764272037:AAHFt8QCbA9TxrwM0HV3ot_7BtpA8YaLJnY';
 const PORT = process.env.PORT || 3000;
 const URL = 'https://youdiedbot.herokuapp.com';
+let temp = 0;
 
 console.debug('App port: ' + PORT);
 
@@ -15,7 +16,8 @@ bot.on('message', (ctx) => {
 console.debug('Bot listening started');
 
 setInterval(() => {
-  console.log('10 sec handled');
+  temp++;
+  console.log('10 sec handled: ' + temp);
 }, 10 * 1000);
 
 bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
