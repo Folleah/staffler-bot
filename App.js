@@ -49,12 +49,7 @@ console.debug('Bot listening started');
 setInterval(() => {
   let currentTimestamp = getCurrentTimestamp();
   joinedUsers = joinedUsers.filter(function (userInfo) {
-    let isUserExpired = (currentTimestamp - EXPIRED_TIME) < userInfo.timestamp;
-    if (isUserExpired) {
-      console.debug('INTERVAL');
-      console.log(userInfo);
-    }
-    return isUserExpired;
+    return (currentTimestamp - EXPIRED_TIME) < userInfo.timestamp;
   });
 }, 5 * 1000);
 
@@ -72,6 +67,7 @@ isWhois = (message) => {
 
 isUserJoinedRecently = (chatId, userId) => {
   joinedUsers.forEach(function(userInfo) {
+    console.debug(chatId, userId, userInfo.userId, userInfo.chatId);
     if (userInfo.userId === userId && userInfo.chatId === chatId) {
       return true;
     }
