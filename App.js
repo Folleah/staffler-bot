@@ -26,8 +26,12 @@ bot.on('new_chat_members', (ctx) => {
 });
 
 bot.on('message', (ctx) => {
+  console.debug(ctx.message);
+  console.debug(!isWhois(ctx.message.text), isUserJoinedRecently(ctx.message.from.id));
   if (!isWhois(ctx.message.text) && isUserJoinedRecently(ctx.message.from.id)) {
+    console.debug(ctx.message.entities !== undefined);
     if (ctx.message.entities !== undefined || ctx.message.photo !== undefined || ctx.message.video !== undefined) {
+      console.debug('user kicked');
       telegram.kickChatMember(ctx.message.chat.id, ctx.message.from.id);
       telegram.deleteMessage(ctx.message.chat.id, ctx.message.message_id);
       ctx.reply(`__Bot #${ctx.message.from.id} died.__`);
