@@ -25,15 +25,13 @@ bot.on('left_chat_member', (ctx) => {
 });
 
 bot.on('message', (ctx) => {
-  console.debug(ctx.message);
-  if (ctx.message.text === undefined) {
-    return;
-  }
-  console.log(telegram.getChatAdministrators(ctx.message.chat.id));
+  telegram.getChatMember(ctx.message.chat.id, ctx.message.from.id).then(function(onFulfilled) {
+    console.log(onFulfilled);
+  });
 
   if (!isWhois(ctx.message.text) && isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id)) {
     if (ctx.message.entities !== undefined || ctx.message.photo !== undefined || ctx.message.video !== undefined) {
-      console.debug('user kicked: ' + ctx.message.chat.id);
+      console.debug('user kicked: ' + ctx.message.from.id);
       telegram.kickChatMember(ctx.message.chat.id, ctx.message.from.id);
       telegram.deleteMessage(ctx.message.chat.id, ctx.message.message_id);
       ctx.replyWithMarkdown(`_Bot #${ctx.message.from.id} died._`);
@@ -59,6 +57,10 @@ getCurrentTimestamp = () => {
 };
 
 isWhois = (message) => {
+  if (message === undefined) {
+    return false;
+  }
+
   return message.search('#whois') !== -1;
 };
 
