@@ -67,8 +67,8 @@ isWhois = (message) => {
 
 isUserJoinedRecently = (chatId, userId) => {
   joinedUsers.forEach(function(userInfo) {
-    console.debug(chatId, userId, userInfo.userId, userInfo.chatId);
     if (userInfo.userId === userId && userInfo.chatId === chatId) {
+      console.log('JOINED RECENTLY');
       return true;
     }
   });
