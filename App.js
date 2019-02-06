@@ -37,6 +37,7 @@ bot.on('message', (ctx) => {
     }
 
     if (isWhois(ctx.message.text)) {
+      deleteUserFromStorage(ctx.message.chat.id, ctx.message.from.id);
       return;
     }
 
