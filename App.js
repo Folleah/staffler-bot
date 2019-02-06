@@ -14,6 +14,10 @@ bot.on('message', (ctx) => {
 });
 console.debug('Bot listening started');
 
+setInterval(() => {
+  console.log('10 sec handled');
+}, 10 * 1000);
+
 bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
 bot.startWebhook(`/bot${API_TOKEN}`, null, PORT);
 console.debug('Webhook started');
