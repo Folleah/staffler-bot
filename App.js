@@ -17,11 +17,13 @@ bot.start((ctx) => ctx.reply('This bot can not be used for personal interaction.
 bot.on('new_chat_members', (ctx) => {
   console.debug('User join: ' + ctx.message.from.id);
   addUserToStorage(ctx.message.chat.id, ctx.message.from.id, ctx.message.date);
+  telegram.deleteMessage(ctx.message.chat.id, ctx.message.message_id);
 });
 
 bot.on('left_chat_member', (ctx) => {
   console.debug('User left: ' + ctx.message.from.id);
   deleteUserFromStorage(ctx.message.chat.id, ctx.message.from.id);
+  telegram.deleteMessage(ctx.message.chat.id, ctx.message.message_id);
 });
 
 bot.on('message', (ctx) => {
@@ -44,6 +46,7 @@ bot.on('message', (ctx) => {
       telegram.deleteMessage(ctx.message.chat.id, ctx.message.message_id);
       ctx.replyWithMarkdown(`_Bot #${ctx.message.from.id} died._`);
       deleteUserFromStorage(ctx.message.chat.id, ctx.message.from.id);
+      console.debug(`_Bot #${ctx.message.from.id} died._`);
     }
   });
 });
