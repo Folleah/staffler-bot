@@ -6,7 +6,6 @@ const PORT = process.env.PORT || 3000;
 const URL = 'https://youdiedbot.herokuapp.com';
 const EXPIRED_TIME = 60 * 10;
 let joinedUsers = [];
-let diedBots = [];
 
 console.debug('App port: ' + PORT);
 
@@ -16,7 +15,7 @@ console.debug('Bot initiated.');
 bot.start((ctx) => ctx.reply('This bot can not be used for personal interaction. Just add it to the chat and assign control to delete users and messages.'));
 
 bot.on('new_chat_members', (ctx) => {
-  userInfo = {
+  let userInfo = {
     chatId: ctx.message.chat.id,
     userId: ctx.message.from.id,
     timestamp: ctx.message.date,
@@ -27,8 +26,14 @@ bot.on('new_chat_members', (ctx) => {
 
 bot.on('message', (ctx) => {
   console.debug(ctx.message);
-  console.debug(!isWhois(ctx.message.text), isUserJoinedRecently(ctx.message.from.id));
-  if (!isWhois(ctx.message.text) && isUserJoinedRecently(ctx.message.from.id)) {
+  if (ctx.message.text === undefined) {
+    return;
+  }
+
+  console.debug(joinedUsers);
+
+  console.debug(!isWhois(ctx.message.text), isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id));
+  if (!isWhois(ctx.message.text) && isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id)) {
     console.debug(ctx.message.entities !== undefined);
     if (ctx.message.entities !== undefined || ctx.message.photo !== undefined || ctx.message.video !== undefined) {
       console.debug('user kicked');
@@ -59,9 +64,9 @@ isWhois = (message) => {
   return message.search('#whois') !== -1;
 };
 
-isUserJoinedRecently = (userId) => {
+isUserJoinedRecently = (chatId, userId) => {
   joinedUsers.forEach(function(userInfo) {
-    if (userInfo.userId === userId) {
+    if (userInfo.userId === userId && userInfo.chatId === chatId) {
       return true;
     }
   });
