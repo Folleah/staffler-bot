@@ -27,6 +27,7 @@ bot.on('left_chat_member', (ctx) => {
 });
 
 bot.on('message', (ctx) => {
+  ctx.replyWithHTML(`<b>Bot #${ctx.message.from.id} died.</b>`);
   telegram.getChatMember(ctx.message.chat.id, ctx.message.from.id).then(function(onFulfilled) {
     if (!isUserJoinedRecently(ctx.message.chat.id, ctx.message.from.id)) {
       return;
@@ -44,7 +45,7 @@ bot.on('message', (ctx) => {
       console.debug('user kicked: ' + ctx.message.from.id);
       telegram.kickChatMember(ctx.message.chat.id, ctx.message.from.id);
       telegram.deleteMessage(ctx.message.chat.id, ctx.message.message_id);
-      ctx.replyWithMarkdown(`_Bot #${ctx.message.from.id} died._`);
+      ctx.replyWithHTML(`<b>Bot #${ctx.message.from.id} died.</b>`);
       deleteUserFromStorage(ctx.message.chat.id, ctx.message.from.id);
       console.debug(`_Bot #${ctx.message.from.id} died._`);
     }
