@@ -56,6 +56,7 @@ console.debug('Bot listening started');
 setInterval(() => {
   let currentTimestamp = getCurrentTimestamp();
   joinedUsers = joinedUsers.filter(function (userInfo) {
+    console.debug(currentTimestamp, EXPIRED_TIME, userInfo.timestamp);
     return (currentTimestamp - EXPIRED_TIME) > userInfo.timestamp;
   })
 }, 5 * 1000);
