@@ -66,14 +66,14 @@ isWhois = (message) => {
 };
 
 isUserJoinedRecently = (chatId, userId) => {
+  let res = false;
   joinedUsers.forEach(function(userInfo) {
     if (userInfo.userId === userId && userInfo.chatId === chatId) {
-      console.log('JOINED RECENTLY');
-      return true;
+      res = true;
     }
   });
 
-  return false;
+  return res;
 };
 
 deleteUserFromStorage = (chatId, userId) => {
