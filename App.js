@@ -8,6 +8,7 @@ const EXPIRED_TIME = 60 * 10;
 let joinedUsers = [];
 
 console.debug('App port: ' + PORT);
+console.debug('url: ' + URL);
 
 const bot = new Telegraf(API_TOKEN);
 const telegram = new Telegram(API_TOKEN);
