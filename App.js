@@ -45,7 +45,7 @@ const CHANNELS = [
     }, {
         name: 'Russian remote workers & freelancers',
         link: 't.me/ru_freelancers',
-        desc: 'отсутствует',
+        desc: 'без описания',
         keywords: ['группа', 'удален', 'фриланс', 'freelance']
     },
 
@@ -90,7 +90,7 @@ const replySearch = (ctx) => {
 
     const options = {
         shouldSort: true,
-        threshold: 0.7,
+        threshold: 0.3,
         location: 0,
         distance: 100,
         maxPatternLength: 32,
