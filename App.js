@@ -1,11 +1,9 @@
-import {Extra, Markup} from "telegraf";
-
 const Telegraf = require('telegraf');
 const Telegram = require('telegraf/telegram');
 
-const API_TOKEN = process.env.API_TOKEN;
+const API_TOKEN = process.env.API_TOKEN || 'yourtoken';
 const PORT = process.env.PORT || 3000;
-const URL = process.env.BOT_URL || '';
+const URL = process.env.BOT_URL || 'app url';
 
 console.debug('App port: ' + PORT);
 console.debug('url: ' + URL);
