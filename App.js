@@ -29,14 +29,25 @@ bot.start((ctx) => ctx.reply('Выберите нужную категорию, 
 const categories = () => {
     const buttons = [];
     CATEGORY_LIST.forEach((value) => {
-       buttons.push([Markup.callbackButton(value[0], value[1])]);
+       buttons.push(Markup.callbackButton(value[0], value[1]));
     });
 
     return Extra.markup(Markup.inlineKeyboard(buttons));
 };
 
+const category = (identifier) => {
+    const list = [];
+    CATEGORY_LIST.forEach((value) => {
+        if (value[1] === identifier) {
+            list.push(Markup.urlButton(value[2][0], value[2][1]));
+        }
+    });
+
+    return Extra.markup(Markup.inlineKeyboard(list));
+};
+
 bot.action(/.+/, (ctx) => {
-    return ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`)
+    return ctx.reply('Список групп и каналов по выбранной аудитории:', category(ctx.match[0]));
 });
 
 bot.command('test', (ctx) => categories(ctx));
