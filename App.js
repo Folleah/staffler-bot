@@ -99,15 +99,14 @@ const CHANNELS = [
 bot.start((ctx) => ctx.reply('Воспользуйтесь меню, что бы управлять ботом. Меню открывается около поля ввода текста.', categories()));
 
 const categories = () => {
-    return Extra.markup(Markup.keyboard([
-            ['🔍 Search', '😎 Popular'], // Row1 with 2 buttons
-            ['☸ Setting', '📞 Feedback'], // Row2 with 2 buttons
-            ['📢 Ads', '⭐️ Rate us', '👥 Share'] // Row3 with 3 buttons
-        ])
-        .oneTime()
-        .resize()
-        .extra()
-    );
+    return Markup.keyboard([
+        ['🔍 Search', '😎 Popular'], // Row1 with 2 buttons
+        ['☸ Setting', '📞 Feedback'], // Row2 with 2 buttons
+        ['📢 Ads', '⭐️ Rate us', '👥 Share'] // Row3 with 3 buttons
+    ])
+    .oneTime()
+    .resize()
+    .extra();
 };
 
 const category = (identifier) => {
