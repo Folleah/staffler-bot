@@ -39,6 +39,8 @@ bot.action(/.+/, (ctx) => {
     return ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`)
 });
 
+bot.command('test', (ctx) => categories(ctx));
+
 bot.command('inline', (ctx) => {
     return ctx.reply('<b>Coke</b> or <i>Pepsi?</i>', Extra.HTML().markup((m) =>
         m.inlineKeyboard([
