@@ -71,73 +71,73 @@ const CHANNELS = [
         name: 'Ищу веб-разработчика',
         link: 't.me/fordev',
         desc: 'Вакансии для веб-разработчиков.',
-        keywords: ['группа', 'програм', 'web', 'веб', 'офис', 'удален', 'php', 'js', 'javascript', 'backend', 'frontend'],
+        keywords: ['группа', 'програм', 'web', 'веб', 'офис', 'php', 'js', 'javascript', 'backend', 'frontend'],
         coverage: 1
     }, {
         name: 'Mobile Dev Jobs — вакансии и аналитика',
         link: 't.me/mobile_jobs',
         desc: 'Публикуем вакансии и запросы на поиск работы по направлению iOS, Android, Xamarin и т.д.',
-        keywords: ['канал', 'ios', 'android', 'андроид', 'разраб', 'програм', 'офис', 'удален', 'мобил', 'java', 'C#', 'swift', 'objective'],
+        keywords: ['канал', 'ios', 'android', 'андроид', 'разраб', 'програм', 'офис', 'мобил', 'java', 'C#', 'swift', 'objective'],
         coverage:7
     }, {
         name: 'JavaScript Jobs — чат',
         link: 't.me/javascript_jobs',
         desc: 'JavaScript Jobs — чат для поиска работы и людей.',
-        keywords: ['группа', 'програм', 'web', 'веб', 'офис', 'удален', 'js', 'javascript', 'frontend', 'node'],
+        keywords: ['группа', 'програм', 'web', 'веб', 'офис', 'js', 'javascript', 'frontend', 'node'],
         coverage: 9
     }, {
         name: 'DevOps Jobs - работа и аналитика',
         link: 't.me/devops_jobs',
         desc: 'Публикуем вакансии и запросы на поиск работы по направлению DevOps, Docker, CoreOS, Kubernetes и пр.',
-        keywords: ['группа', 'програм', 'web', 'веб', 'офис', 'удален', 'сервер', 'devops', 'девопс', 'сисадмин', 'системный администратор', 'kubernetes', 'docker', 'coreos'],
+        keywords: ['группа', 'програм', 'web', 'веб', 'офис', 'сервер', 'devops', 'девопс', 'сисадмин', 'системный администратор', 'kubernetes', 'docker', 'coreos'],
         coverage: 4
     }, {
         name: 'QA — вакансии и аналитика рынка вакансий',
         link: 't.me/qa_jobs',
         desc: 'Вакансии и поиск работы в сфере QA.',
-        keywords: ['группа', 'програм', 'web', 'веб', 'офис', 'удален', 'qa', 'качеств', 'тест'],
+        keywords: ['группа', 'програм', 'web', 'веб', 'офис', 'qa', 'качеств', 'тест'],
         coverage: 7
     }, {
         name: 'Node.js Jobs — вакансии и аналитика',
         link: 't.me/nodejs_jobs',
         desc: 'Публикуем вакансии и запросы на поиск работы с глубоким пониманием Node.js и back-end.',
-        keywords: ['группа', 'програм', 'web', 'веб', 'офис', 'удален', 'js', 'javascript', 'frontend', 'node'],
+        keywords: ['группа', 'програм', 'web', 'веб', 'офис', 'js', 'javascript', 'frontend', 'node'],
         coverage: 2
     }, {
         name: 'ТОП вакансии программистам',
         link: 't.me/jobGeeks',
         desc: 'Публикуются ТОЛЬКО ТОП ВАКАНСИИ для программистов, остальное банится.',
-        keywords: ['группа', 'програм', 'удален', 'офис', 'веб', 'js', 'javascript', 'php', 'android', 'java', 'scala', 'mobile', 'мобил'],
+        keywords: ['группа', 'програм', 'офис', 'веб', 'js', 'javascript', 'php', 'android', 'java', 'scala', 'mobile', 'мобил'],
         coverage: 2
     }, {
         name: 'Scala Jobs',
         link: 't.me/scala_jobs',
         desc: 'без описания',
-        keywords: ['группа', 'програм', 'удален', 'офис', 'scala', 'скала'],
+        keywords: ['группа', 'програм', 'офис', 'scala', 'скала'],
         coverage: 1
     }, {
         name: 'JavaScript Jobs — вакансии и резюме',
         link: 't.me/javascript_jobs_feed',
         desc: 'Вакансии из @javascript_jobs',
-        keywords: ['канал', 'програм', 'удален', 'офис', 'javascript', 'js'],
+        keywords: ['канал', 'програм', 'офис', 'javascript', 'js'],
         coverage: 6
     }, {
         name: 'JS Jobs',
         link: 't.me/jsjobs',
         desc: 'Более 1 000 участников. Канал с ботом вакансий с HeadHunter и Мойкруг в сфере Javascript.',
-        keywords: ['канал', 'програм', 'удален', 'офис', 'javascript', 'js'],
+        keywords: ['канал', 'програм', 'офис', 'javascript', 'js'],
         coverage: 1
     }, {
         name: 'Job for Frontenders + Node.js',
         link: 't.me/forfrontend',
         desc: 'Вакансии для фронтендеров. JavaScript + Node.js.',
-        keywords: ['канал', 'програм', 'удален', 'офис', 'javascript', 'js', 'node'],
+        keywords: ['канал', 'програм', 'офис', 'javascript', 'js', 'node'],
         coverage: 1
     }, {
         name: 'Node.js Jobs — вакансии и резюме',
         link: 't.me/nodejs_jobs_feed',
         desc: 'Вакансии из @nodejs_jobs',
-        keywords: ['канал', 'програм', 'удален', 'офис', 'javascript', 'js', 'node'],
+        keywords: ['канал', 'програм', 'офис', 'javascript', 'js', 'node'],
         coverage: 1
     },
 
@@ -146,7 +146,7 @@ const CHANNELS = [
         name: 'Jobs HR |Вакансии и Резюме',
         link: 't.me/workhrhr',
         desc: 'Делитесь Вакансиями и Резюме, интересными новостями, современными технологиями.',
-        keywords: ['группа', 'програм', 'удален', 'офис', 'hr', 'веб', 'web', 'мобил', 'mobile'],
+        keywords: ['группа', 'програм', 'офис', 'hr', 'веб', 'web', 'мобил', 'mobile'],
         coverage: 1
     },
 
@@ -202,7 +202,7 @@ const replySearch = (ctx) => {
 
     const options = {
         shouldSort: true,
-        threshold: 0.6,
+        threshold: 0.4,
         location: 0,
         distance: 100,
         maxPatternLength: 32,
