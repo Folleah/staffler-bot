@@ -35,7 +35,7 @@ bot.start((ctx) => ctx.reply('Выберите нужную категорию, 
 const categories = () => {
     const buttons = [];
     CATEGORY_LIST.forEach((value) => {
-       buttons.push(Markup.callbackButton(value[0], value[1]));
+       buttons.push([Markup.callbackButton(value[0], value[1])]);
     });
 
     return Extra.markup(Markup.inlineKeyboard(buttons));
@@ -46,7 +46,7 @@ const category = (identifier) => {
     CATEGORY_LIST.forEach((value) => {
         if (value[1] === identifier) {
             value[2].forEach(value => {
-                list.push(Markup.urlButton(value[0], value[1]));
+                list.push([Markup.urlButton(value[0], value[1])]);
             });
         }
     });
