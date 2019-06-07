@@ -24,9 +24,9 @@ const CATEGORIES = [
 
 ];
 
-bot.start((ctx) => ctx.reply('Здравствуйте. Выберите нужную категорию, что бы просмотреть список чатов и каналов', categories()));
+bot.start((ctx) => ctx.reply('Выберите нужную категорию, что бы просмотреть список чатов и каналов', Extra.markup(categories)));
 
-const categories = () => Markup.inlineKeyboard([
+const categories = Markup.inlineKeyboard([
     Markup.urlButton('❤️', 'http://telegraf.js.org'),
     Markup.callbackButton('Delete', 'delete')
 ]);
