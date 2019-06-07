@@ -96,34 +96,12 @@ const CHANNELS = [
     }
 ];
 
-bot.start((ctx) => ctx.reply('Воспользуйтесь меню, что бы управлять ботом. Меню открывается около поля ввода текста.', categories()));
+bot.start((ctx) => ctx.reply('Введите ключевые слова для поиска группы/канала. Например: "удаленные вакансии" или "мобильная разработка"'));
 
-const categories = () => {
-    return Markup.keyboard([
-        ['🔍 Search', '😎 Popular'], // Row1 with 2 buttons
-        ['☸ Setting', '📞 Feedback'], // Row2 with 2 buttons
-        ['📢 Ads', '⭐️ Rate us', '👥 Share'] // Row3 with 3 buttons
-    ])
-    .oneTime()
-    .resize()
-    .extra();
+const search = (searchLine) => {
+    const results = [];
+
+    return 'test';
 };
 
-const category = (identifier) => {
-    const list = [];
-    CATEGORY_LIST.forEach((value) => {
-        if (value[1] === identifier) {
-            value[2].forEach(value => {
-                list.push([Markup.urlButton(value[0], value[1])]);
-            });
-        }
-    });
-
-    return Extra.markup(Markup.inlineKeyboard(list));
-};
-
-bot.action(/.+/, (ctx) => {
-    return ctx.reply('Список групп и каналов по выбранной аудитории:', category(ctx.match[0]));
-});
-
-bot.command('list', (ctx) => categories());
+bot.on('message', (ctx) => ctx.reply('**Вот что нам удалось найти:** <b>список</b>'));

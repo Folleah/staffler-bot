@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "fuse.js": "^3.4.5",
     "telegraf": "^3.26.0"
   }
 }
