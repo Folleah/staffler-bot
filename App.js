@@ -14,22 +14,26 @@ const bot = new Telegraf(API_TOKEN);
 const telegram = new Telegram(API_TOKEN);
 console.debug('Bot initiated.');
 
-const CATEGORIES = [
+const CATEGORY_LIST = [
     ['Удалённые вакансии', 'remotes', [
-        ''
+        'RemoteOK', ''
     ]],
     ['IT/Digital', 'it-digital', [
+        'Ищу веб-разработчика', 't.me/fordev',
 
     ]],
-
 ];
 
-bot.start((ctx) => ctx.reply('Выберите нужную категорию, что бы просмотреть список чатов и каналов', Extra.markup(categories)));
+bot.start((ctx) => ctx.reply('Выберите нужную категорию, что бы просмотреть список чатов и каналов', categories));
 
-const categories = Markup.inlineKeyboard([
-    Markup.urlButton('❤️', 't.me/sonofrevolution'),
-    Markup.callbackButton('Delete', 'delete')
-]);
+const categories = () => {
+    const buttons = [];
+    CATEGORY_LIST.forEach((value) => {
+       buttons.push(Markup.callbackButton(value[0], value[1]));
+    });
+
+    return Extra.markup(Markup.inlineKeyboard(buttons));
+};
 
 bot.action(/.+/, (ctx) => {
     return ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`)
