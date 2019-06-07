@@ -207,9 +207,16 @@ const replySearch = (ctx) => {
         distance: 100,
         maxPatternLength: 32,
         minMatchCharLength: 1,
-        keys: [
-            'name', 'desc', 'keywords'
-        ]
+        keys: [{
+            name: 'name',
+            weight: 0.5
+        }, {
+            name: 'desc',
+            weight: 0.3
+        }, {
+            name: 'keywords',
+            weight: 0.2
+        }],
     };
 
     let fuse = new Fuse(CHANNELS, options);
