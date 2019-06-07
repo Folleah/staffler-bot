@@ -14,8 +14,39 @@ const bot = new Telegraf(API_TOKEN);
 const telegram = new Telegram(API_TOKEN);
 console.debug('Bot initiated.');
 
-bot.start((ctx) => {
-    ctx.reply('Выберите категорию.');
+const CATEGORIES = [
+    ['Удалённые вакансии', 'remotes', [
+        ''
+    ]],
+    ['IT/Digital', 'it-digital', [
+
+    ]],
+
+];
+
+bot.start((ctx) => categories(ctx));
+
+const categories = (ctx) => {
+    return ctx.reply('<b>Coke</b> or <i>Pepsi?</i>',
+        Extra.HTML().markup((m) =>
+            m.inlineKeyboard([
+                m.urlButton('Coke', 'Coke'),
+                m.urlButton('Pepsi', '@sonofrevolution')
+            ])
+        )
+    )
+};
+
+bot.action(/.+/, (ctx) => {
+    return ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`)
+});
+
+bot.command('inline', (ctx) => {
+    return ctx.reply('<b>Coke</b> or <i>Pepsi?</i>', Extra.HTML().markup((m) =>
+        m.inlineKeyboard([
+            m.callbackButton('Coke', 'Coke'),
+            m.callbackButton('Pepsi', 'Pepsi')
+        ])))
 });
 
 // bot.on('text', (ctx) => ctx.reply('Hello World'));
@@ -124,10 +155,6 @@ bot.action('italic', (ctx) => {
         Markup.callbackButton('Plain', 'plain'),
         Markup.callbackButton('* Italic *', 'italic')
     ])))
-})
-
-bot.action(/.+/, (ctx) => {
-    return ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`)
 })
 console.debug('Bot listening started');
 
