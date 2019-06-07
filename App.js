@@ -1,5 +1,7 @@
 const Telegraf = require('telegraf');
 const Telegram = require('telegraf/telegram');
+const Markup = require('telegraf/markup');
+const Extra = require('telegraf/extra');
 
 const API_TOKEN = process.env.API_TOKEN || 'yourtoken';
 const PORT = process.env.PORT || 3000;
