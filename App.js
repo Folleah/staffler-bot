@@ -17,6 +17,14 @@ bot.start((ctx) => {
     console.log('User started bot.');
 });
 
+bot.on('text', (ctx) => ctx.reply('Hello World'));
+
+console.debug('Bot listening started');
+
+bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
+bot.startWebhook(`/bot${API_TOKEN}`, null, PORT);
+console.debug('Webhook started');
+
 
 // bot.on('new_chat_members', (ctx) => {
 //   console.debug('User join: ' + ctx.message.from.id);
@@ -61,7 +69,7 @@ bot.start((ctx) => {
 //     }
 //   });
 // });
-// console.debug('Bot listening started');
+
 //
 // setInterval(() => {
 //   let currentTimestamp = getCurrentTimestamp();
@@ -74,10 +82,7 @@ bot.start((ctx) => {
 //   });
 // }, 5 * 1000);
 //
-// bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
-// bot.startWebhook(`/bot${API_TOKEN}`, null, PORT);
-// console.debug('Webhook started');
-//
+
 // getCurrentTimestamp = () => {
 //   return Math.round(+new Date()/1000);
 // };
