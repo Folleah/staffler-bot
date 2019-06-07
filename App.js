@@ -104,4 +104,4 @@ const search = (searchLine) => {
     return 'test';
 };
 
-bot.on('message', (ctx) => ctx.reply('**Вот что нам удалось найти:** <b>список</b>'));
+bot.on('message', (ctx) => ctx.replyWithHTML('<b>список</b>'));
