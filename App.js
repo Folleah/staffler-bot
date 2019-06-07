@@ -24,7 +24,7 @@ const CATEGORY_LIST = [
     ]],
 ];
 
-bot.start((ctx) => ctx.reply('Выберите нужную категорию, что бы просмотреть список чатов и каналов', categories));
+bot.start((ctx) => ctx.reply('Выберите нужную категорию, что бы просмотреть список чатов и каналов', categories()));
 
 const categories = () => {
     const buttons = [];
