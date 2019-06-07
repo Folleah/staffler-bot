@@ -1,5 +1,6 @@
 const Telegraf = require('telegraf');
 const Telegram = require('telegraf/telegram');
+const Extra = require('telegraf/extra');
 const Fuse = require('fuse.js');
 
 const API_TOKEN = process.env.API_TOKEN || 'yourtoken';
@@ -76,10 +77,11 @@ const CHANNELS = [
 bot.start((ctx) => ctx.replyWithHTML('Перечислите ключевые слова для поиска группы/канала через пробел, <b>без знаков препинания и спец-символов</b>. Например: "удаленные вакансии" или "мобильная разработка"'));
 
 const replySearch = (ctx) => {
-    if (ctx.message.length < 5) {
+    const message = ctx.message.text;
+    if (message.length < 5) {
         return ctx.replyWithHTML('Для поиска нужно использовать минимум 5 символов.');
     }
-    console.log(ctx.message);
+
     const options = {
         shouldSort: true,
         threshold: 0.6,
@@ -88,23 +90,23 @@ const replySearch = (ctx) => {
         maxPatternLength: 32,
         minMatchCharLength: 1,
         keys: [
-            'name', 'desc'
+            'name', 'desc', 'tags'
         ]
     };
 
     let fuse = new Fuse(CHANNELS, options);
-    let result = fuse.search('удален');
+    let result = fuse.search(message);
 
     if (result.length === 0) {
-        return ctx.replyWithHTML(`По запросу <code>${ctx.message}</code> ничего не найдено. Попробуйте сократить, либо увеличить поисковый запрос.`);
+        return ctx.replyWithHTML(`По запросу <code>${message}</code> ничего не найдено. Попробуйте сократить, либо увеличить поисковый запрос.`);
     }
 
     let formattedResult = [];
     result.forEach(value => {
-       formattedResult.push(`<a href="${value.link}">${value.name}</a>\n<i>${value.desc}</i>\n`);
+       formattedResult.push(`<a href="${value.link}">${value.name}</a>\n<i>${value.desc}</i>`);
     });
 
-    return ctx.replyWithHTML(formattedResult.join());
+    return ctx.replyWithHTML(formattedResult.join('\n\n'), Extra.webPreview(false));
 };
 
 bot.on('message', (ctx) => replySearch(ctx));
