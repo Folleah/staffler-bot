@@ -29,7 +29,7 @@ bot.start((ctx) => ctx.reply('Выберите нужную категорию, 
 const categories = () => {
     const buttons = [];
     CATEGORY_LIST.forEach((value) => {
-       buttons.push(Markup.callbackButton(value[0], value[1]));
+       buttons.push([Markup.callbackButton(value[0], value[1])]);
     });
 
     return Extra.markup(Markup.inlineKeyboard(buttons));
