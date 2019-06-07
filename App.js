@@ -3,7 +3,7 @@ const Telegram = require('telegraf/telegram');
 
 const API_TOKEN = process.env.API_TOKEN;
 const PORT = process.env.PORT || 3000;
-const URL = process.env.BOT_URL;
+const URL = process.env.BOT_URL || '';
 
 console.debug('App port: ' + PORT);
 console.debug('url: ' + URL);
@@ -11,7 +11,11 @@ console.debug('url: ' + URL);
 const bot = new Telegraf(API_TOKEN);
 const telegram = new Telegram(API_TOKEN);
 console.debug('Bot initiated.');
-bot.start((ctx) => ctx.reply('Hello world!'));
+
+bot.start((ctx) => {
+    ctx.reply('Hello world!');
+    console.log('User started bot.');
+});
 
 
 // bot.on('new_chat_members', (ctx) => {
