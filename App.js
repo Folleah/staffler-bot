@@ -16,7 +16,14 @@ console.debug('Bot initiated.');
 
 const CATEGORY_LIST = [
     ['Удалённые вакансии', 'remotes', [
-        'RemoteOK', ''
+        'Удалёнка', 't.me/freelancefeed',
+        'Твоя Удалёнка', 't.me/distantjob',
+        'Премиум удалёнка', 't.me/remote_ru',
+        'Remote IT (Inflow)', 't.me/Remoteit',
+        'Russian remote workers & freelancers', 't.me/ru_freelancers'
+    ]],
+    ['Менеджмент', 'managers', [
+
     ]],
     ['IT/Digital', 'it-digital', [
         'Ищу веб-разработчика', 't.me/fordev',
