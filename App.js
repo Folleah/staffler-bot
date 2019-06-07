@@ -73,11 +73,7 @@ const CHANNELS = [
     }
 ];
 
-bot.start((ctx) => ctx.reply('Перечислите ключевые слова для поиска группы/канала через пробел, <b>без знаков препинания и спец-символов</b>. Например: "удаленные вакансии" или "мобильная разработка"'));
-
-const search = (searchLine) => {
-
-};
+bot.start((ctx) => ctx.replyWithHTML('Перечислите ключевые слова для поиска группы/канала через пробел, <b>без знаков препинания и спец-символов</b>. Например: "удаленные вакансии" или "мобильная разработка"'));
 
 const replySearch = (ctx) => {
     if (ctx.message.length < 5) {
@@ -92,7 +88,7 @@ const replySearch = (ctx) => {
         maxPatternLength: 32,
         minMatchCharLength: 1,
         keys: [
-            'name', 'desc', 'tags'
+            'name', 'desc'
         ]
     };
 
