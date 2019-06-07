@@ -12,6 +12,7 @@ console.debug('url: ' + URL);
 
 const bot = new Telegraf(API_TOKEN);
 const telegram = new Telegram(API_TOKEN);
+const SEARCH_MESSAGE = '<b>По вашему запросу были найдены следующие каналы и группы:</b>\n\n';
 
 console.debug('Bot initiated.');
 console.debug('Bot listening started');
@@ -78,8 +79,8 @@ bot.start((ctx) => ctx.replyWithHTML('Перечислите ключевые с
 
 const replySearch = (ctx) => {
     const message = ctx.message.text;
-    if (message.length < 5) {
-        return ctx.replyWithHTML('Для поиска нужно использовать минимум 5 символов.');
+    if (message.length < 3) {
+        return ctx.replyWithHTML('Для поиска нужно использовать минимум 3 символа.');
     }
 
     const options = {
@@ -106,7 +107,7 @@ const replySearch = (ctx) => {
        formattedResult.push(`<a href="${value.link}">${value.name}</a>\n<i>${value.desc}</i>`);
     });
 
-    return ctx.replyWithHTML(formattedResult.join('\n\n'), Extra.webPreview(false));
+    return ctx.replyWithHTML(SEARCH_MESSAGE + formattedResult.join('\n\n'), Extra.webPreview(false));
 };
 
 bot.on('message', (ctx) => replySearch(ctx));
