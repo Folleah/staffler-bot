@@ -26,27 +26,27 @@ const CHANNELS = [
         name: 'Удалёнка',
         link: 't.me/freelancefeed',
         desc: 'Самая интересная лента вакансий с удаленной работой.',
-        keywords: ['channel', 'remote', 'freelance']
+        keywords: ['канал', 'удален']
     }, {
         name: 'Твоя Удалёнка',
         link: 't.me/distantjob',
         desc: 'Публикуем самые свежие и актуальные вакансии на удалённую работу. ',
-        keywords: ['channel', 'remote', 'freelance']
+        keywords: ['канал', 'удален']
     }, {
         name: 'Премиум удалёнка',
         link: 't.me/remote_ru',
         desc: 'Cамая качественная, русскоязычная лента вакансий с удаленной работой.',
-        keywords: ['channel', 'remote', 'freelance']
+        keywords: ['канал', 'удален']
     }, {
         name: 'Remote IT (Inflow)',
         link: 't.me/Remoteit',
         desc: 'Вакансии и проекты на удаленку для it специалистов. Отбираются в ручную, публикуются минимум 2 в сутки.',
-        keywords: ['channel', 'remote', 'freelance']
+        keywords: ['канал', 'удален',]
     }, {
         name: 'Russian remote workers & freelancers',
         link: 't.me/ru_freelancers',
         desc: 'отсутствует',
-        keywords: ['group', 'remote', 'freelance']
+        keywords: ['группа', 'удален', 'фриланс', 'freelance']
     },
 
     // programmers
@@ -54,7 +54,12 @@ const CHANNELS = [
         name: 'Ищу веб-разработчика',
         link: 't.me/fordev',
         desc: 'Вакансии для веб-разработчиков.',
-        tags: ['group', 'programmers', 'web']
+        keywords: ['группа', 'програм', 'web', 'веб', 'офис', 'удален']
+    }, {
+        name: '',
+        link: '',
+        desc: 'Публикуем вакансии и запросы на поиск работы по направлению iOS, Android, Xamarin и т.д.',
+        keywords: ['канал', 'ios', 'android', 'андроид', 'разраб', 'програм', 'офис', 'удален', 'мобил']
     },
 
     // digital/it
@@ -66,12 +71,12 @@ const CHANNELS = [
         name: 'Вакансии в продуктовых компаниях и стартапах',
         link: 't.me/djinni_productjobs',
         desc: 'Вакансии украинских стартапов и продуктовых компаний на Джинне.',
-        tags: ['канал', 'програм', 'менедж', 'devops', 'мобил', 'digital', 'startup', 'стартап', 'удален', 'офис']
+        keywords: ['канал', 'програм', 'менедж', 'devops', 'мобил', 'digital', 'startup', 'стартап', 'удален', 'офис']
     }, {
         name: 'Telegram IT Job',
         link: 't.me/myjobit',
         desc: 'IT Вакансии и резюме в офис.',
-        tags: ['канал', 'програм', 'менедж', 'devops', 'мобил', 'digital', 'startup', 'стартап', 'офис']
+        keywords: ['канал', 'програм', 'менедж', 'devops', 'мобил', 'digital', 'startup', 'стартап', 'офис']
     }
 ];
 
@@ -85,13 +90,13 @@ const replySearch = (ctx) => {
 
     const options = {
         shouldSort: true,
-        threshold: 0.6,
+        threshold: 0.7,
         location: 0,
         distance: 100,
         maxPatternLength: 32,
         minMatchCharLength: 1,
         keys: [
-            'name', 'desc', 'tags'
+            'name', 'desc', 'keywords'
         ]
     };
 
