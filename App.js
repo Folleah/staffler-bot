@@ -26,16 +26,14 @@ const CATEGORIES = [
 
 bot.start((ctx) => categories(ctx));
 
-const categories = (ctx) => {
-    return ctx.reply('<b>Coke</b> or <i>Pepsi?</i>',
-        Extra.HTML().markup((m) =>
-            m.inlineKeyboard([
-                m.urlButton('Coke', 'Coke'),
-                m.urlButton('Pepsi', '@sonofrevolution')
-            ])
-        )
+const categories = (ctx) => ctx.reply('Выберите категорию',
+    Extra.HTML().markup((m) =>
+        m.inlineKeyboard([
+            m.urlButton('Coke', 'Coke'),
+            m.urlButton('Pepsi', '@sonofrevolution')
+        ])
     )
-};
+);
 
 bot.action(/.+/, (ctx) => {
     return ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`)
