@@ -83,13 +83,13 @@ const CHANNELS = [
         name: 'JavaScript Jobs — чат',
         link: 't.me/javascript_jobs',
         desc: 'JavaScript Jobs — чат для поиска работы и людей.',
-        keywords: ['группа', 'програм', 'web', 'веб', 'офис', 'удален', 'js', 'javascript', 'frontend', 'node']
+        keywords: ['группа', 'програм', 'web', 'веб', 'офис', 'удален', 'js', 'javascript', 'frontend', 'node'],
         coverage: 9
     }, {
         name: 'DevOps Jobs - работа и аналитика',
         link: 't.me/devops_jobs',
         desc: 'Публикуем вакансии и запросы на поиск работы по направлению DevOps, Docker, CoreOS, Kubernetes и пр.',
-        keywords: ['группа', 'програм', 'web', 'веб', 'офис', 'удален', 'сервер', 'devops', 'девопс', 'сисадмин', 'системный администратор', 'kubernetes', 'docker', 'coreos']
+        keywords: ['группа', 'програм', 'web', 'веб', 'офис', 'удален', 'сервер', 'devops', 'девопс', 'сисадмин', 'системный администратор', 'kubernetes', 'docker', 'coreos'],
         coverage: 4
     }, {
         name: 'QA — вакансии и аналитика рынка вакансий',
