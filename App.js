@@ -27,7 +27,7 @@ const CATEGORIES = [
 bot.start((ctx) => ctx.reply('Выберите нужную категорию, что бы просмотреть список чатов и каналов', Extra.markup(categories)));
 
 const categories = Markup.inlineKeyboard([
-    Markup.urlButton('❤️', '@sonofrevolution'),
+    Markup.urlButton('❤️', 't.me/sonofrevolution'),
     Markup.callbackButton('Delete', 'delete')
 ]);
 
