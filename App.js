@@ -16,7 +16,7 @@ bot.start((ctx) => {
     ctx.reply('Выберите категорию.');
 });
 
-bot.on('text', (ctx) => ctx.reply('Hello World'));
+// bot.on('text', (ctx) => ctx.reply('Hello World'));
 
 bot.command('onetime', ({ reply }) =>
     reply('One time keyboard', Markup
