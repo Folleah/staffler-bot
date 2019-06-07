@@ -79,7 +79,7 @@ const replySearch = (ctx) => {
     if (ctx.message.length < 5) {
         return ctx.replyWithHTML('Для поиска нужно использовать минимум 5 символов.');
     }
-
+    console.log(ctx.message);
     const options = {
         shouldSort: true,
         threshold: 0.6,
