@@ -26,8 +26,7 @@ const CATEGORY_LIST = [
 
     ]],
     ['IT/Digital', 'it-digital', [
-        'Ищу веб-разработчика', 't.me/fordev',
-
+        ['Ищу веб-разработчика', 't.me/fordev'],
     ]],
 ];
 
@@ -46,7 +45,9 @@ const category = (identifier) => {
     const list = [];
     CATEGORY_LIST.forEach((value) => {
         if (value[1] === identifier) {
-            list.push(Markup.urlButton(value[2][0], value[2][1]));
+            value[2].forEach(value => {
+                list.push(Markup.urlButton(value[0], value[1]));
+            });
         }
     });
 
