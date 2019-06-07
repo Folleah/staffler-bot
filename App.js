@@ -93,7 +93,7 @@ const replySearch = (ctx) => {
     };
 
     let fuse = new Fuse(CHANNELS, options);
-    let result = fuse.search(ctx.message);
+    let result = fuse.search('удален');
 
     if (result.length === 0) {
         return ctx.replyWithHTML(`По запросу <code>${ctx.message}</code> ничего не найдено. Попробуйте сократить, либо увеличить поисковый запрос.`);
