@@ -24,16 +24,12 @@ const CATEGORIES = [
 
 ];
 
-bot.start((ctx) => categories(ctx));
+bot.start((ctx) => ctx.reply('Здравствуйте. Выберите нужную категорию, что бы просмотреть список чатов и каналов', categories()));
 
-const categories = (ctx) => ctx.reply('Выберите категорию',
-    Extra.HTML().markup((m) =>
-        m.inlineKeyboard([
-            m.urlButton('Coke', 'Coke'),
-            m.urlButton('Pepsi', '@sonofrevolution')
-        ])
-    )
-);
+const categories = () => Markup.inlineKeyboard([
+    Markup.urlButton('❤️', 'http://telegraf.js.org'),
+    Markup.callbackButton('Delete', 'delete')
+]);
 
 bot.action(/.+/, (ctx) => {
     return ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`)
