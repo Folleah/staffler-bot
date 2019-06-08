@@ -333,7 +333,7 @@ const replySearch = (ctx) => {
 
 // bot.on('message', (ctx) => replySearch(ctx));
 
-bot.command('search', (ctx) => console.log(ctx));
+bot.command('search', (ctx) => replySearch(ctx));
 
 bot.command('help', (ctx) => ctx.replyWithHTML(
     `Бот содержит ${CHANNELS.length} каналов и групп с общим охватом ${getAllCount()} человек.\n` +
