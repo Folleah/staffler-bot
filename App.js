@@ -325,7 +325,7 @@ const replySearch = (ctx) => {
 
     let formattedResult = [];
     result.forEach(value => {
-       formattedResult.push(`<a href="${value.link}">${value.name}</a>\n<i>${value.desc}</i>`);
+       formattedResult.push(`<a href="${value.link}">${value.name}</a> <b>(${value.coverage}k)</b>\n<i>${value.desc}</i>`);
     });
 
     return ctx.replyWithHTML(SEARCH_MESSAGE + formattedResult.join('\n\n'), Extra.webPreview(false));
