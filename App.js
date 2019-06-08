@@ -292,7 +292,7 @@ bot.start((ctx) => ctx.replyWithHTML(
 ));
 
 const replySearch = (ctx) => {
-    const message = ctx.message.text;
+    const message = getCommandField(ctx.message.text);
     if (message.length < 3) {
         return ctx.replyWithHTML('Для поиска нужно использовать минимум 3 символа.');
     }
@@ -347,4 +347,11 @@ const getAllCount = () => {
     });
 
     return count * 1000;
+};
+
+const getCommandField = (command) => {
+    let splits = command.split(' ');
+    splits.shift();
+
+    return splits.join(' ');
 };
